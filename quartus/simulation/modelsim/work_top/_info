@@ -1,0 +1,787 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/simulation/modelsim
+vaddress_adaptor
+Z1 !s110 1772342816
+!i10b 1
+!s100 ?;H5g:f`a=Kl65TamM4e92
+I7_Z0k:H2<JjQl>[KCUScf3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1772171314
+8..\..\..\src\display\address_adaptor.v
+F..\..\..\src\display\address_adaptor.v
+L0 1
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1772342816.000000
+Z6 !s107 tb_top.v|..\..\..\src\display\top.v|..\..\..\src\display\image_bank_shared.v|..\..\..\src\display\edge_stream_path.v|..\..\..\src\display\ctrl_path.v|..\..\..\src\display\data_path.v|..\..\..\src\display\address_adaptor.v|..\..\..\src\display\sync2.v|..\..\..\src\display\pixel_register.v|..\..\..\src\vga_modules\vga_adapter.v|..\..\..\src\vga_modules\vga_controller.v|..\..\..\src\vga_modules\vga_address_translator.v|..\..\ram_modules\image_03.v|..\..\ram_modules\image_02.v|..\..\ram_modules\image_01.v|..\..\vga_pll\vga_pll.v|
+Z7 !s90 -work|work_top|..\..\vga_pll\vga_pll.v|..\..\ram_modules\image_01.v|..\..\ram_modules\image_02.v|..\..\ram_modules\image_03.v|..\..\..\src\vga_modules\vga_address_translator.v|..\..\..\src\vga_modules\vga_controller.v|..\..\..\src\vga_modules\vga_adapter.v|..\..\..\src\display\pixel_register.v|..\..\..\src\display\sync2.v|..\..\..\src\display\address_adaptor.v|..\..\..\src\display\data_path.v|..\..\..\src\display\ctrl_path.v|..\..\..\src\display\edge_stream_path.v|..\..\..\src\display\image_bank_shared.v|..\..\..\src\display\top.v|tb_top.v|
+!i113 1
+Z8 o-work work_top
+Z9 tCvgOpt 0
+vcanny_simple
+Z10 !s110 1772342886
+!i10b 1
+!s100 S=;z;EZJkk1FS7UT6JUV]1
+Iokm97GfJJ8Fnn3d5PPC542
+R2
+R0
+Z11 w1772181249
+Z12 8..\..\..\src\image_processing\threshold_binary.v
+Z13 F..\..\..\src\image_processing\threshold_binary.v
+L0 183
+R4
+r1
+!s85 0
+31
+Z14 !s108 1772342886.000000
+Z15 !s107 ..\..\vga_pll\vga_pll\vga_pll_0002.v|..\..\..\src\image_processing\window3x3_stream.v|..\..\..\src\image_processing\threshold_binary.v|..\..\..\src\image_processing\sp_preproc_constbg.v|..\..\..\src\image_processing\sobel_3x3_gray.v|..\..\..\src\image_processing\scharr_3x3_gray.v|..\..\..\src\image_processing\rgb2gray8.v|..\..\..\src\image_processing\median3x3_stream.v|..\..\..\src\image_processing\median3x3.v|..\..\..\src\image_processing\med3_8.v|..\..\..\src\image_processing\impulse_switch_8.v|..\..\..\src\image_processing\image_processing_uni.v|
+Z16 !s90 -work|work_top|..\..\..\src\image_processing\image_processing_uni.v|..\..\..\src\image_processing\impulse_switch_8.v|..\..\..\src\image_processing\med3_8.v|..\..\..\src\image_processing\median3x3.v|..\..\..\src\image_processing\median3x3_stream.v|..\..\..\src\image_processing\rgb2gray8.v|..\..\..\src\image_processing\scharr_3x3_gray.v|..\..\..\src\image_processing\sobel_3x3_gray.v|..\..\..\src\image_processing\sp_preproc_constbg.v|..\..\..\src\image_processing\threshold_binary.v|..\..\..\src\image_processing\window3x3_stream.v|..\..\vga_pll\vga_pll\vga_pll_0002.v|
+!i113 1
+R8
+R9
+vcanny_threshold
+R10
+!i10b 1
+!s100 ]hFg8mblDDLSSNALK64;N1
+IOTa?BGJP;OhI>Vd2Y9ZL_0
+R2
+R0
+R11
+R12
+R13
+L0 38
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vctrl_path
+R1
+!i10b 1
+!s100 8`H]Al9ePNI@[6h@a>S>=2
+Ie5KL9dXXlU4Rhmh0AIh_13
+R2
+R0
+R3
+8..\..\..\src\display\ctrl_path.v
+F..\..\..\src\display\ctrl_path.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vdata_path
+R1
+!i10b 1
+!s100 WhFS_D`hkb3n[TL9gMUH92
+I^i:mP9LnVGnKYeY1o_Gk01
+R2
+R0
+R3
+8..\..\..\src\display\data_path.v
+F..\..\..\src\display\data_path.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vedge_hysteresis_3x3
+R10
+!i10b 1
+!s100 QL2B?oKdO_D:Y[SMEj4Wh0
+I@9=mIN=_e`z6V;^9@QLe73
+R2
+R0
+R11
+R12
+R13
+L0 156
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vedge_stream_path
+R1
+!i10b 1
+!s100 lM3DjGAWTVb[MNZh1^g;:0
+Ih8MJgZ9kjVX@H24=GYjaL2
+R2
+R0
+w1772184032
+8..\..\..\src\display\edge_stream_path.v
+F..\..\..\src\display\edge_stream_path.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vgrad_direction
+R10
+!i10b 1
+!s100 A^01a04AeW<<Q0Y7?CEK[0
+IBzcEI2@Eh9inLDOD6WS<m1
+R2
+R0
+R11
+R12
+R13
+L0 121
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vimage_01
+R1
+!i10b 1
+!s100 FQ45?<GX;So:MPDd==^923
+Im4c?Q?ZU:03iWedz^QB0G0
+R2
+R0
+R3
+8..\..\ram_modules\image_01.v
+F..\..\ram_modules\image_01.v
+Z17 L0 40
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vimage_02
+R1
+!i10b 1
+!s100 DPgjk7IC9RnN`]MgFK]S62
+IVaWB:g^3G5Bd`F]i=:BnM2
+R2
+R0
+R3
+8..\..\ram_modules\image_02.v
+F..\..\ram_modules\image_02.v
+R17
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vimage_03
+R1
+!i10b 1
+!s100 E[b5Z77H_I:8TNGhc]Wlf3
+IfJoo:PdU`dTdJT:FU6B;L3
+R2
+R0
+R3
+8..\..\ram_modules\image_03.v
+F..\..\ram_modules\image_03.v
+R17
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vimage_bank_shared
+R1
+!i10b 1
+!s100 oiCXB7NTXZPJRGX_1A5Dn0
+ID0I6f6bZeaVZ5Wi2Q:DQR2
+R2
+R0
+R3
+8..\..\..\src\display\image_bank_shared.v
+F..\..\..\src\display\image_bank_shared.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vimage_processing_uni
+R10
+!i10b 1
+!s100 m_GJ@BX_HD2YX1K@HCQnC1
+IW3IijMFhPO;[[2TkFKoXV3
+R2
+R0
+w1772181297
+8..\..\..\src\image_processing\image_processing_uni.v
+F..\..\..\src\image_processing\image_processing_uni.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vimpulse_switch_8
+R10
+!i10b 1
+!s100 >DZSY;<^`Bd:b7zRC]nhk0
+IBEi`jbN^jQZlGngS98FgW3
+R2
+R0
+R3
+8..\..\..\src\image_processing\impulse_switch_8.v
+F..\..\..\src\image_processing\impulse_switch_8.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vmed3_8
+R10
+!i10b 1
+!s100 j]1hLCjfDRSOjzT6mO>cF0
+IN]12n=Ecfk4hi@X=3e=5k2
+R2
+R0
+R3
+8..\..\..\src\image_processing\med3_8.v
+F..\..\..\src\image_processing\med3_8.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vmedian3x3
+R10
+!i10b 1
+!s100 8eKGB:Oc[A66ol@>UlV2i0
+I_9gfJ5G2gjD8:zA2WNb0M2
+R2
+R0
+R3
+8..\..\..\src\image_processing\median3x3.v
+F..\..\..\src\image_processing\median3x3.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vmedian3x3_stream
+R10
+!i10b 1
+!s100 zG<g7SN;k[1`OGcnWiNH<1
+IN7dAz0YcLVIb2BBDQK;Eg2
+R2
+R0
+R3
+8..\..\..\src\image_processing\median3x3_stream.v
+F..\..\..\src\image_processing\median3x3_stream.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vnms_3x3
+R10
+!i10b 1
+!s100 j4=[NMCzUef7Tag]GTom43
+In0JJeaINKf@0dSgb4zLc;3
+R2
+R0
+R11
+R12
+R13
+L0 74
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vpixel_register
+R1
+!i10b 1
+!s100 R]j552aW>@83omFS7z]N:3
+I>YX]4on@SdFbbmk4<L?>G1
+R2
+R0
+w1772339001
+8..\..\..\src\display\pixel_register.v
+F..\..\..\src\display\pixel_register.v
+Z18 L0 12
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vrgb2gray8
+R10
+!i10b 1
+!s100 <g4T6FWVaz=B<]6KT0g703
+ILgf9CndEaD5ZX2eK1WTMd0
+R2
+R0
+R3
+8..\..\..\src\image_processing\rgb2gray8.v
+F..\..\..\src\image_processing\rgb2gray8.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vscharr_3x3_gray
+R10
+!i10b 1
+!s100 kf<>ASPlh4178:1aLC0`;2
+IGk>zZIbUnLAFbo1UB6T@V2
+R2
+R0
+R3
+8..\..\..\src\image_processing\scharr_3x3_gray.v
+F..\..\..\src\image_processing\scharr_3x3_gray.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vsobel_3x3_gray
+R10
+!i10b 1
+!s100 OM2ekMjW<O2_A3aM3NHzz3
+In>6_jBC?3za^n4]EXIoT40
+R2
+R0
+R3
+8..\..\..\src\image_processing\sobel_3x3_gray.v
+F..\..\..\src\image_processing\sobel_3x3_gray.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vsp_preproc_constbg_comb
+R10
+!i10b 1
+!s100 UhmUQ4knLbT6Y;R8Oo`PF2
+I;o42HKmO=W]anSiE4Jcm;3
+R2
+R0
+R3
+8..\..\..\src\image_processing\sp_preproc_constbg.v
+F..\..\..\src\image_processing\sp_preproc_constbg.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vsync2
+R1
+!i10b 1
+!s100 WRMI7HYXjTHBNFYK24oao2
+IX:OH]b<nfJa>Dd<RlaH?i2
+R2
+R0
+R3
+8..\..\..\src\display\sync2.v
+F..\..\..\src\display\sync2.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vtb_golden_verify
+!s110 1772343752
+!i10b 1
+!s100 DDOz0DlInIeFmlb?B<Oe53
+IUC<^ffX9@mQ=@Zb]H0]^81
+R2
+R0
+w1772343697
+8tb_golden_verify.v
+Ftb_golden_verify.v
+L0 6
+R4
+r1
+!s85 0
+31
+!s108 1772343752.000000
+!s107 tb_golden_verify.v|
+!s90 -work|work_top|tb_golden_verify.v|
+!i113 1
+R8
+R9
+vtb_lane_detection
+!s110 1772345092
+!i10b 1
+!s100 UDFa8kWl2QGmKlcUDXT=e0
+I3I?Kg@Gi1VNk7[oN]O^e52
+R2
+R0
+w1772345072
+8tb_lane_detection.v
+Ftb_lane_detection.v
+L0 6
+R4
+r1
+!s85 0
+31
+!s108 1772345092.000000
+!s107 tb_lane_detection.v|
+!s90 -work|work_top|tb_lane_detection.v|
+!i113 1
+R8
+R9
+vtb_top
+R1
+!i10b 1
+!s100 @_JXP5;kR@U`HOEnbILEJ0
+IDj7ocaYSQ_c@Wb<a9zQiN2
+R2
+R0
+w1772342791
+8tb_top.v
+Ftb_top.v
+L0 6
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vtb_top_image
+!s110 1772343365
+!i10b 1
+!s100 fz6CMZP7?Q6XH:@]APMC22
+IL^?U0kN5GOJHfD2H8::0d3
+R2
+R0
+w1772343352
+8tb_top_image.v
+Ftb_top_image.v
+L0 6
+R4
+r1
+!s85 0
+31
+!s108 1772343365.000000
+!s107 tb_top_image.v|
+!s90 -work|work_top|tb_top_image.v|
+!i113 1
+R8
+R9
+vtb_top_lane
+!s110 1772348615
+!i10b 1
+!s100 Y`J0dBEK661Veck48JIAR0
+IWZA6FK>:L<CQ103bV6GMA0
+R2
+R0
+w1772348590
+8tb_top_lane.v
+Ftb_top_lane.v
+L0 7
+R4
+r1
+!s85 0
+31
+!s108 1772348615.000000
+!s107 tb_top_lane.v|
+!s90 -work|work_top|tb_top_lane.v|
+!i113 1
+R8
+R9
+vthreshold_binary
+R10
+!i10b 1
+!s100 63Aom^>o4WFHXakG8_Bd41
+Il_NCN2ToeH[fba^8B4bfD3
+R2
+R0
+R11
+R12
+R13
+R18
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vtop
+R1
+!i10b 1
+!s100 z?X8G22McJ7I@O5D3o_lj0
+IBRgzPB7aUlDMZ2I1zea`=1
+R2
+R0
+R3
+8..\..\..\src\display\top.v
+F..\..\..\src\display\top.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vvga_adapter
+R1
+!i10b 1
+!s100 6cVJg>g9>4b`?6m`Y;Qca3
+IVi4EM_3WXIWnY]o1PfPDj3
+R2
+R0
+R3
+8..\..\..\src\vga_modules\vga_adapter.v
+F..\..\..\src\vga_modules\vga_adapter.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vvga_address_translator
+R1
+!i10b 1
+!s100 3hYXT03aAU5h3eB[R^k`a1
+IO?UdRXHo@o=D;:S_Q``UH1
+R2
+R0
+R3
+8..\..\..\src\vga_modules\vga_address_translator.v
+F..\..\..\src\vga_modules\vga_address_translator.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vvga_controller
+R1
+!i10b 1
+!s100 ]l9G`?e7`^O]n;bZk9I^90
+InWD^oZm]]5]Kn3K6HcJj71
+R2
+R0
+R3
+8..\..\..\src\vga_modules\vga_controller.v
+F..\..\..\src\vga_modules\vga_controller.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vvga_pll
+!s110 1772343055
+!i10b 1
+!s100 ;Iel1]dIaIAU2gY7LQD<72
+ILfdEl6FSD3BJ]j7nb8;T;1
+R2
+R0
+w1772342924
+8vga_pll_sim.v
+Fvga_pll_sim.v
+L0 6
+R4
+r1
+!s85 0
+31
+!s108 1772343055.000000
+!s107 vga_pll_sim.v|
+!s90 -work|work_top|vga_pll_sim.v|
+!i113 1
+R8
+R9
+vvga_pll_0002
+R10
+!i10b 1
+!s100 ][nGEg@b]z`QFe3oD3nSe3
+IDRn=9:mn`R[WAb?Rj@[0h0
+R2
+R0
+R3
+8..\..\vga_pll\vga_pll\vga_pll_0002.v
+F..\..\vga_pll\vga_pll\vga_pll_0002.v
+L0 2
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9
+vwindow3x3_stream
+R10
+!i10b 1
+!s100 5c=4m>5<`i7c7?53iOA`C0
+IDh4]2Qa:Z60E7P8G>5R[D1
+R2
+R0
+R3
+8..\..\..\src\image_processing\window3x3_stream.v
+F..\..\..\src\image_processing\window3x3_stream.v
+L0 1
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R8
+R9

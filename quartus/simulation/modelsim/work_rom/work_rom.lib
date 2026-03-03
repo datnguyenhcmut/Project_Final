@@ -1,0 +1,37 @@
+timestamp=1772342522255
+
+[~A]
+../../../src/display/pixel_register.v_tb_rom_pixel.v=0*950*3715
+LastVerilogToplevel=tb_rom_pixel
+ModifyID=1
+Version=74
+
+[~MFT]
+0=5|0work_rom.mgf|3715|0
+1=3|1work_rom.mgf|4702|0
+3=6|3work_rom.mgf|10941|0
+
+[$root]
+A/$root=22|||1*0
+BinW64/$root=3*0
+SLP=3*115
+Version=15.0.261.9132 (Windows64)|00000000|c73a565f2ade592f8ac1c68f484c9216925925977092ae5a621798b5307fa4ab
+
+[pixel_register]
+A/pixel_register=22|../../../../src/display/pixel_register.v|12|1*374
+BinW64/pixel_register=3*183
+R=../../../../src/display/pixel_register.v|12
+SLP=3*4686
+Version=15.0.261.9132 (Windows64)|00000000|cf87ed8f5e6deb8efe0674535728e27153ec49952b83e55b24b1dba8799ba234e31df6fa709771b6bc074a8a950be380
+
+[tb_rom_pixel]
+A/tb_rom_pixel=22|../tb_rom_pixel.v|6|1*4702
+BinW64/tb_rom_pixel=3*5958
+R=../tb_rom_pixel.v|6
+SLP=3*10941
+Version=15.0.261.9132 (Windows64)|00000000|9be0f81676864fa95df038c54d0dc70e173b9f0ff552eedf9bb179208b5f3d3faf4f64a3a0b0ecf3911dff6471238d7b
+
+[~U]
+$root=12|0*0|
+pixel_register=12|0*198|
+tb_rom_pixel=12|0*584||0x10

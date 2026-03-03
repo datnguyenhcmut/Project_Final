@@ -1,0 +1,60 @@
+\babel@toc {vietnamese}{}\relax 
+\contentsline {chapter}{Lời Cảm Ơn}{1}{chapter*.1}%
+\contentsline {chapter}{Tóm Tắt Đồ Án}{2}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Giới Thiệu}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Đặt Vấn Đề}{7}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Mục Tiêu Đồ Án}{7}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Phạm Vi Đồ Án}{8}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Cấu Trúc Báo Cáo}{8}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Cơ Sở Lý Thuyết}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Tổng Quan Về Xử Lý Ảnh Số}{9}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Biểu Diễn Ảnh Số}{9}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Chuyển Đổi RGB sang Grayscale}{9}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Khử Nhiễu Salt-and-Pepper}{9}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Đặc Điểm Nhiễu Salt-and-Pepper}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Bộ Lọc Median}{10}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Mạng Sắp Xếp (Sorting Network)}{10}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Phát Hiện Cạnh}{12}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Toán Tử Gradient}{12}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Toán Tử Sobel}{12}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Toán Tử Scharr}{12}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Biến Đổi Hough}{12}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Nguyên Lý Cơ Bản}{12}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Không Gian Accumulator}{13}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Thuật Toán Hough Transform}{13}{subsection.2.4.3}%
+\contentsline {chapter}{\numberline {3}Thiết Kế Hệ Thống}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Kiến Trúc Tổng Thể}{14}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Mô Tả Các Khối Chính}{14}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Image ROM Bank}{14}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Data Path}{15}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Edge Stream Path}{15}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}VGA Adapter}{15}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Điều Khiển Hệ Thống}{15}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Thiết Kế Hough Transform}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Tổng Quan Module}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Kiến Trúc Chi Tiết}{17}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Bảng Tra Sin/Cos (LUT)}{17}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Máy Trạng Thái (FSM)}{18}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Tính Toán Rho}{18}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Công Thức}{18}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Phân Tích Phạm Vi}{19}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Accumulator Design}{19}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Cấu Trúc Bộ Nhớ}{19}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Implementation}{19}{subsection.4.6.2}%
+\contentsline {section}{\numberline {4.7}Peak Detection}{20}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Line Overlay}{21}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Kiểm Tra Điểm Trên Đường}{21}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Overlay Màu}{21}{subsection.4.8.2}%
+\contentsline {chapter}{\numberline {5}Kết Quả Mô Phỏng}{22}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Môi Trường Mô Phỏng}{22}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Kết Quả Unit Test - Hough Module}{22}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Kết Quả Integration Test - Top Module}{23}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Phân Tích Kết Quả Hough Transform}{23}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Command Mô Phỏng}{24}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Kết Luận và Hướng Phát Triển}{25}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Kết Quả Đạt Được}{25}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Hạn Chế}{25}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Hướng Phát Triển}{26}{section.6.3}%
+\contentsline {chapter}{Tài Liệu Tham Khảo}{27}{chapter*.26}%
+\contentsline {chapter}{\numberline {A}Danh Sách File Source Code}{28}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Sơ Đồ Chân FPGA}{29}{appendix.B}%

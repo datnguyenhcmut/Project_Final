@@ -1,0 +1,39 @@
+\babel@toc {vietnamese}{}\relax 
+\contentsline {section}{\numberline {1}Giới Thiệu}{3}{section.1}%
+\contentsline {section}{\numberline {2}Cơ Sở Lý Thuyết Hough Transform}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Nguyên Lý Biến Đổi Hough}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Thuật Toán Bỏ Phiếu (Voting Algorithm)}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Thiết Kế Phần Cứng (Module hough\_stream\_path)}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Sin/Cos Look-Up Table (LUT)}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Máy Trạng Thái (FSM)}{5}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Thiết Kế Test Case và Căn Cứ Khoa Học}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Phương Pháp Kiểm Tra}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Căn Cứ Thiết Kế Test}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Chi Tiết Test Cases}{5}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Test 1: Passthrough Mode}{5}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Test 2: Single Line Detection}{6}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}Test 5 và 6: Horizontal và Vertical Line}{6}{subsubsection.3.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.4}Test 7: Noise Rejection}{6}{subsubsection.3.3.4}%
+\contentsline {section}{\numberline {4}So Sánh với MATLAB Reference}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Cài Đặt MATLAB}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}So Sánh Kết Quả}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Phân Tích Sai Số}{7}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Kết Quả Simulation Chi Tiết}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Kết Quả Unit Test}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Kết Quả Integration Test}{8}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Phân Tích Thống Kê}{9}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Hướng Dẫn Chạy Simulation}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Unit Test - Hough Stream}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Integration Test - Top Module}{9}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Chuyển Đổi Nền Tảng: TangNano4K sang DE10 Standard}{10}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Tổng Quan}{10}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}So Sánh Nền Tảng}{10}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Các Thay Đổi Khi Port}{10}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Cấu Trúc Project Quartus}{11}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Kết Quả Port}{11}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Lưu Ý Khi Port}{11}{subsection.7.6}%
+\contentsline {section}{\numberline {8}Kết Luận}{11}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Tóm Tắt}{11}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Đề Xuất Cải Tiến}{12}{subsection.8.2}%
+\contentsline {section}{\numberline {A}Tệp Nguồn Testbench}{12}{appendix.A}%
+\contentsline {section}{\numberline {B}Tệp Bộ Nhớ}{12}{appendix.B}%

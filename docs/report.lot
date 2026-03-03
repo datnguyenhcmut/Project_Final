@@ -1,0 +1,22 @@
+\babel@toc {vietnamese}{}\relax 
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1.1}{\ignorespaces Thông số kỹ thuật của hệ thống}}{8}{table.caption.6}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Thông số Image ROM}}{14}{table.caption.12}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces VGA Timing (640x480 @ 60Hz)}}{15}{table.caption.14}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Chức năng các switch điều khiển}}{15}{table.caption.15}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Tham số thiết kế Hough Transform}}{16}{table.caption.16}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Một số giá trị trong bảng tra Sin/Cos}}{17}{table.caption.18}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Môi trường và công cụ mô phỏng}}{22}{table.caption.21}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Chi tiết kết quả unit test Hough Transform}}{22}{table.caption.22}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Kết quả integration test theo phase}}{23}{table.caption.23}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Chi tiết đường thẳng được phát hiện}}{23}{table.caption.24}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Thống kê overlay output}}{24}{table.caption.25}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.1}{\ignorespaces Danh sách các file Verilog trong project}}{28}{table.A.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {B.1}{\ignorespaces Pin assignment cho DE10-Lite}}{29}{table.caption.27}%

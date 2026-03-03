@@ -1,0 +1,7 @@
+# vsim -L altera_mf_ver -L lpm_ver -L altera_ver -L cyclonev_ver -L altera_lnsim_ver -do "add wave -r /*; run 500us; wave zoom full" work_top.tb_top_lane 
+# Start time: 14:16:21 on Mar 01,2026
+# ** Error (suppressible): (vsim-19) Failed to access library 'work_top' at "work_top".
+# No such file or directory. (errno = ENOENT)
+# Error loading design
+# End time: 14:16:22 on Mar 01,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

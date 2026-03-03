@@ -1,0 +1,245 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc,fit,backgrounds}
+\usepackage{geometry}
+\usepackage{booktabs}
+
+\geometry{margin=2cm}
+
+\tikzstyle{module} = [rectangle, draw, fill=blue!20, text width=5em, text centered, minimum height=2.5em, rounded corners]
+\tikzstyle{ip} = [rectangle, draw, fill=green!20, text width=5em, text centered, minimum height=2.5em, rounded corners]
+\tikzstyle{io} = [rectangle, draw, fill=yellow!30, text width=4em, text centered, minimum height=2em]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\title{Kiến Trúc Hệ Thống Chi Tiết}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Sơ Đồ Khối Top Module}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm, scale=0.9, transform shape]
+    
+    % Input/Output
+    \node[io] (clk) {CLOCK\_50};
+    \node[io, below=0.5cm of clk] (sw) {SW[9:0]};
+    \node[io, right=12cm of clk] (vga_r) {VGA\_R};
+    \node[io, below=0.3cm of vga_r] (vga_g) {VGA\_G};
+    \node[io, below=0.3cm of vga_g] (vga_b) {VGA\_B};
+    \node[io, below=0.3cm of vga_b] (vga_hs) {VGA\_HS};
+    \node[io, below=0.3cm of vga_hs] (vga_vs) {VGA\_VS};
+    
+    % Main modules
+    \node[ip, right=1.5cm of sw] (rom) {Image\\Bank};
+    \node[module, right=1.5cm of rom] (dp) {Data\\Path};
+    \node[module, right=1.5cm of dp] (stream) {Edge\\Stream\\Path};
+    \node[module, right=1.5cm of stream] (vga) {VGA\\Adapter};
+    
+    % Sub modules
+    \node[module, below=1cm of rom] (ctrl) {Ctrl\\Path};
+    
+    % Hough inside stream
+    \node[module, below=1.5cm of stream, fill=red!20] (hough) {Hough\\Stream\\Path};
+    
+    % Connections
+    \draw[arrow] (clk) -| (rom);
+    \draw[arrow] (sw) -- (rom);
+    \draw[arrow] (sw) |- (ctrl);
+    \draw[arrow] (rom) -- (dp);
+    \draw[arrow] (dp) -- (stream);
+    \draw[arrow] (stream) -- (vga);
+    \draw[arrow] (vga) -- (vga_r);
+    \draw[arrow] (ctrl) -| (stream);
+    
+    % Hough connection
+    \draw[arrow, red] (stream) -- (hough);
+    \draw[arrow, red] (hough) -- ++(1.5,0) |- (vga);
+    
+    % Labels
+    \node[above=0.1cm of hough, text=red, font=\small] {SW[4]=1};
+    
+    % Bounding box
+    \begin{scope}[on background layer]
+        \node[draw, dashed, fit=(rom)(dp)(stream)(vga)(ctrl)(hough), inner sep=0.5cm, label=above:{\textbf{top module}}] {};
+    \end{scope}
+    
+\end{tikzpicture}
+\end{center}
+
+\section{Chi Tiết Edge Stream Path}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm, scale=0.85, transform shape]
+    
+    % Input
+    \node[io] (in) {pixel\_in\\24-bit};
+    
+    % Pipeline stages
+    \node[module, right=1cm of in] (sync) {Sync2};
+    \node[module, right=of sync] (rgb2g) {RGB2\\Gray};
+    \node[module, right=of rgb2g] (pre) {SP\\Preproc};
+    \node[module, right=of pre] (med) {Median\\3x3};
+    \node[module, right=of med] (win) {Window\\3x3};
+    
+    % Edge detection
+    \node[module, below=1cm of win] (sobel) {Sobel};
+    \node[module, left=of sobel] (scharr) {Scharr};
+    \node[module, left=of scharr] (canny) {Canny};
+    
+    % Hough
+    \node[module, below=1cm of sobel, fill=red!20] (hough) {Hough\\Stream};
+    
+    % Output
+    \node[io, below=1cm of hough] (out) {colour\_out\\24-bit};
+    
+    % Connections
+    \draw[arrow] (in) -- (sync);
+    \draw[arrow] (sync) -- (rgb2g);
+    \draw[arrow] (rgb2g) -- (pre);
+    \draw[arrow] (pre) -- (med);
+    \draw[arrow] (med) -- (win);
+    \draw[arrow] (win) -- (sobel);
+    \draw[arrow] (win) -| (scharr);
+    \draw[arrow] (win) -| (canny);
+    
+    % Mux
+    \node[module, below=0.8cm of scharr, fill=orange!20, text width=3em] (mux) {MUX};
+    \draw[arrow] (sobel) |- (mux);
+    \draw[arrow] (scharr) -- (mux);
+    \draw[arrow] (canny) |- (mux);
+    
+    \draw[arrow] (mux) -- (hough);
+    \draw[arrow] (hough) -- (out);
+    
+    % Mode select
+    \node[right=0.3cm of mux, font=\small] {SW[3:2]};
+    
+\end{tikzpicture}
+\end{center}
+
+\section{Chi Tiết Hough Stream Path}
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.5cm, scale=0.85, transform shape]
+    
+    % Input
+    \node[io] (in) {edge\_in\\1-bit};
+    \node[io, below=0.5cm of in] (xy) {x, y\\8-bit};
+    
+    % LUT
+    \node[module, right=1.5cm of in, fill=purple!20] (lut) {Sin/Cos\\LUT\\(32 entries)};
+    
+    % Accumulator
+    \node[module, right=of lut, fill=cyan!20, text width=6em] (accum) {Accumulator\\$32\times64$\\(2048 cells)};
+    
+    % Peak detection
+    \node[module, right=of accum] (peak) {Peak\\Detect};
+    
+    % Line check
+    \node[module, below=1.5cm of accum] (check) {Line\\Check};
+    
+    % Overlay
+    \node[module, right=of check] (overlay) {Colour\\Overlay};
+    
+    % Output
+    \node[io, right=of overlay] (out) {colour\_out\\24-bit};
+    
+    % FSM
+    \node[module, below=1.5cm of lut, fill=gray!20] (fsm) {FSM\\5 states};
+    
+    % Connections
+    \draw[arrow] (in) -- (lut);
+    \draw[arrow] (xy) -| (lut);
+    \draw[arrow] (lut) -- (accum);
+    \draw[arrow] (accum) -- (peak);
+    \draw[arrow] (peak) |- (check);
+    \draw[arrow] (check) -- (overlay);
+    \draw[arrow] (overlay) -- (out);
+    \draw[arrow] (fsm) -- (accum);
+    
+    % Parameters
+    \node[above=0.5cm of accum, font=\footnotesize] {
+        \begin{tabular}{l}
+        VOTE\_THRESH = 3 \\
+        MAX\_LINES = 2
+        \end{tabular}
+    };
+    
+\end{tikzpicture}
+\end{center}
+
+\section{Máy Trạng Thái Hough}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm, auto]
+    % States
+    \node[module, fill=gray!30] (idle) {IDLE\\(0)};
+    \node[module, right=of idle, fill=yellow!30] (clear) {CLEAR\\(1)};
+    \node[module, right=of clear, fill=green!30] (collect) {COLLECT\\(2)};
+    \node[module, below=of collect, fill=blue!30] (detect) {DETECT\\(3)};
+    \node[module, left=of detect, fill=red!30] (ready) {READY\\(4)};
+    
+    % Transitions
+    \draw[arrow] (idle) -- node[above] {frame\_start} (clear);
+    \draw[arrow] (clear) -- node[above] {clear\_cnt=2047} (collect);
+    \draw[arrow] (collect) -- node[right] {y=119, x=159} (detect);
+    \draw[arrow] (detect) -- node[above] {scan\_done} (ready);
+    \draw[arrow] (ready) -- node[left] {frame\_start} (clear);
+    \draw[arrow] (idle) edge[loop above] node {!frame\_start} (idle);
+    
+\end{tikzpicture}
+\end{center}
+
+\section{Cấu Trúc Accumulator}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % Grid
+    \draw[step=0.5cm, gray, very thin] (0,0) grid (8,4);
+    
+    % Labels
+    \node at (-0.5, 2) [rotate=90] {$\rho$ (0-63)};
+    \node at (4, -0.5) {$\theta$ (0-31)};
+    
+    % Highlight cells
+    \fill[red!30] (1,2.5) rectangle (1.5,3);
+    \fill[red!30] (3,1.5) rectangle (3.5,2);
+    
+    % Vote values
+    \node[font=\tiny] at (1.25, 2.75) {16};
+    \node[font=\tiny] at (3.25, 1.75) {12};
+    
+    % Arrows to detected lines
+    \draw[arrow, red, thick] (1.25, 3) -- ++(0, 1) node[above] {Line 1};
+    \draw[arrow, red, thick] (3.25, 2) -- ++(0, 1.5) node[above] {Line 2};
+    
+    % Dimension
+    \node at (4, 4.5) {$32 \times 64 = 2048$ cells, 8-bit mỗi cell};
+    
+\end{tikzpicture}
+\end{center}
+
+\section{Bảng Tổng Hợp Module}
+
+\begin{center}
+\begin{tabular}{|l|l|c|c|}
+\hline
+\textbf{Module} & \textbf{Chức năng} & \textbf{Input} & \textbf{Output} \\
+\hline
+top & Top-level & clk, SW & VGA \\
+edge\_stream\_path & Pipeline chính & pixel 24b & colour 24b \\
+hough\_stream\_path & Hough Transform & edge 1b, x, y & colour 24b \\
+median3x3\_stream & Khử nhiễu & gray 8b & gray 8b \\
+sobel\_3x3\_gray & Phát hiện cạnh & window 9x8b & edge 8b \\
+rgb2gray8 & Chuyển màu & RGB 24b & gray 8b \\
+vga\_adapter & VGA output & colour 24b & VGA signals \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}

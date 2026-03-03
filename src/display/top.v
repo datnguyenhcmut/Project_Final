@@ -17,8 +17,9 @@ module top (
 
   wire [1:0] mode_sel  = SW[1:0];   
   wire [1:0] img_mode  = SW[3:2];   
-  wire       use_stream= SW[6];    
+  wire       hough_en  = SW[4];     // Enable Hough line detection
   wire       pre_en    = SW[5]; 
+  wire       use_stream= SW[6]; 
   
   wire [23:0] colour_dp;
   wire [7:0]  x_dp;
@@ -121,6 +122,38 @@ module top (
     .plot_s     (plot_stream)
   );
 
+  //=========================================================================
+  // Hough Transform for Lane Detection (controlled by SW[4])
+  //=========================================================================
+  wire edge_is_white = (colour_stream[23:16] > 8'd128);  // Bright pixel = edge
+  wire [23:0] hough_colour;
+  
+  hough_stream_path #(
+    .W           (160),
+    .H           (120),
+    .THETA_STEPS (32),
+    .RHO_MAX     (64),
+    .VOTE_THRESH (3),         // Lowered for streaming mode voting
+    .LINE_COLOR  (24'hFF0000)  // Red lines
+  ) u_hough (
+    .clk           (CLOCK_50),
+    .resetn        (resetn),
+    .edge_x        (x_stream),
+    .edge_y        (y_stream),
+    .edge_valid    (edge_is_white),
+    .pixel_valid   (plot_stream),
+    .pixel_in      (colour_stream),
+    .enable_hough  (hough_en),
+    .show_lines    (hough_en),
+    .pixel_out     (hough_colour),
+    .pixel_out_valid(),
+    .detected_lines(),
+    .hough_busy    ()
+  );
+  
+  // Final stream output: with or without Hough overlay
+  wire [23:0] colour_stream_final = hough_en ? hough_colour : colour_stream;
+
   wire [16:0] addr_bank  = use_stream ? addr_st  : addr_dp;
   wire [2:0]  selim_bank = use_stream ? sel_im_st: sel_im_dp;
   wire [23:0] pixel_bank;
@@ -132,10 +165,10 @@ module top (
     .pixel_q (pixel_bank)
   );
 
-  wire [23:0] colour_mux = use_stream ? colour_stream : colour_dp;
-  wire [7:0]  x_mux      = use_stream ? x_stream      : x_dp;
-  wire [6:0]  y_mux      = use_stream ? y_stream      : y_dp;
-  wire        plot_mux   = use_stream ? plot_stream   : plot_dp;
+  wire [23:0] colour_mux = use_stream ? colour_stream_final : colour_dp;
+  wire [7:0]  x_mux      = use_stream ? x_stream            : x_dp;
+  wire [6:0]  y_mux      = use_stream ? y_stream            : y_dp;
+  wire        plot_mux   = use_stream ? plot_stream         : plot_dp;
 
   vga_adapter VGA (
     .clock     (CLOCK_50),

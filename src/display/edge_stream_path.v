@@ -4,7 +4,9 @@ module edge_stream_path #(
   parameter integer SOBEL_SHIFT   = 2,  
   parameter integer SCHARR_SHIFT  = 3, 
   parameter integer EDGE_BOOST_SH = 1, 
-  parameter integer GAIN_SH       = 2  
+  parameter integer GAIN_SH       = 2,
+  parameter [7:0]   CANNY_HIGH_TH = 8'd80,
+  parameter [7:0]   CANNY_LOW_TH  = 8'd30
 )(
   input  wire        clock,        
   input  wire        resetn,
@@ -175,6 +177,17 @@ module edge_stream_path #(
     .grad_mag8(grad_scharr)
   );
 
+  // Canny-style binary edge detection
+  wire canny_edge;
+  canny_simple #(
+    .HIGH_TH(CANNY_HIGH_TH),
+    .LOW_TH (CANNY_LOW_TH)
+  ) u_canny (
+    .grad_mag (grad_sobel),
+    .edge_out (canny_edge)
+  );
+  wire [7:0] binary_out = canny_edge ? 8'hFF : 8'h00;
+
   wire [9:0]  tmp_boost = {2'b00, grad_sobel} << EDGE_BOOST_SH;
   wire [7:0]  sobel_boost_sat = (|tmp_boost[9:8]) ? 8'hFF : tmp_boost[7:0];
   wire [9:0]  g_lin_w = {2'b00, grad_scharr} << GAIN_SH;
@@ -196,10 +209,10 @@ module edge_stream_path #(
   reg [23:0] colour_sel;
   always @(*) begin
     case (mode_r)
-      2'b00: colour_sel = rgb_win;                                            
-      2'b01: colour_sel = {m_pixel, m_pixel, m_pixel};                        
-      2'b10: colour_sel = {sobel_boost_sat, sobel_boost_sat, sobel_boost_sat}; 
-      2'b11: colour_sel = {scharr_enh_sat, scharr_enh_sat, scharr_enh_sat};    
+      2'b00: colour_sel = rgb_win;                                            // RGB original
+      2'b01: colour_sel = {m_pixel, m_pixel, m_pixel};                        // Grayscale (median)
+      2'b10: colour_sel = {sobel_boost_sat, sobel_boost_sat, sobel_boost_sat}; // Sobel edge
+      2'b11: colour_sel = {binary_out, binary_out, binary_out};               // Binary Canny edge
     endcase
   end
 

@@ -1,0 +1,16 @@
+# Quartus build files
+quartus/db/
+quartus/incremental_db/
+quartus/output_files/
+quartus/greybox_tmp/
+
+# Simulation files
+*.vcd
+*.wlf
+*.vstf
+
+# Large files
+quartus/simulation/modelsim/tb_pixel_register.vcd
+
+# IDE files
+*.qws

@@ -1,0 +1,251 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+
+\geometry{margin=2cm}
+
+\lstset{
+    language=Verilog,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    breaklines=true
+}
+
+\title{Chi Tiết Các Module}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+%=====================================================
+\section{hough\_stream\_path.v}
+%=====================================================
+
+\subsection{Mô Tả}
+Module thực hiện biến đổi Hough để phát hiện đường thẳng từ ảnh edge binary.
+
+\subsection{Parameters}
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|l|}
+\hline
+\textbf{Parameter} & \textbf{Default} & \textbf{Mô tả} \\
+\hline
+IMG\_W & 160 & Chiều rộng ảnh \\
+IMG\_H & 120 & Chiều cao ảnh \\
+NUM\_THETA & 32 & Số góc theta (0-180°) \\
+NUM\_RHO & 64 & Số giá trị rho \\
+VOTE\_THRESH & 3 & Ngưỡng vote \\
+MAX\_LINES & 2 & Số đường tối đa \\
+LINE\_THICKNESS & 3 & Độ dày line overlay \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Ports}
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|l|}
+\hline
+\textbf{Port} & \textbf{Direction} & \textbf{Width} & \textbf{Mô tả} \\
+\hline
+clk & input & 1 & Clock \\
+rst\_n & input & 1 & Reset active low \\
+hough\_en & input & 1 & Enable Hough \\
+pixel\_valid & input & 1 & Pixel valid strobe \\
+edge\_in & input & 1 & Edge pixel (1=edge) \\
+x\_in & input & 8 & Tọa độ X \\
+y\_in & input & 8 & Tọa độ Y \\
+colour\_in & input & 24 & Màu input \\
+colour\_out & output & 24 & Màu output với overlay \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Thuật Toán}
+\begin{enumerate}
+    \item Với mỗi edge pixel $(x, y)$:
+    \item Tính $\rho$ cho tất cả 32 giá trị $\theta$:
+    \begin{equation}
+        \rho = \frac{x \cdot \cos_{lut}[\theta] + y \cdot \sin_{lut}[\theta]}{512}
+    \end{equation}
+    \item Tăng vote trong accumulator: $accum[\theta][\rho]++$
+    \item Sau frame, tìm 2 cell có vote cao nhất $\geq$ VOTE\_THRESH
+    \item Overlay đường lên output
+\end{enumerate}
+
+\subsection{Code Snippet - Vote Collection}
+\begin{lstlisting}
+// Voting logic
+always @(posedge clk) begin
+    if (state == S_COLLECT && pixel_valid && edge_in) begin
+        for (t = 0; t < NUM_THETA; t = t + 1) begin
+            cos_val = cos_lut[t];
+            sin_val = sin_lut[t];
+            rho_sum = x_in * cos_val + y_in * sin_val;
+            rho_div = rho_sum >>> 9;  // divide by 512
+            
+            if (rho_div >= 0 && rho_div < NUM_RHO) begin
+                addr = t * NUM_RHO + rho_div;
+                if (accum[addr] < 255)
+                    accum[addr] <= accum[addr] + 1;
+            end
+        end
+    end
+end
+\end{lstlisting}
+
+\subsection{Code Snippet - Line Check}
+\begin{lstlisting}
+// Check if current pixel is on detected line
+wire signed [17:0] rho_calc1 = x_in * cos_lut[line1_theta] 
+                             + y_in * sin_lut[line1_theta];
+wire signed [17:0] rho_expected1 = line1_rho * 512;
+wire signed [17:0] diff1 = rho_calc1 - rho_expected1;
+wire on_line1 = (diff1 > -LINE_THICKNESS*512) && 
+                (diff1 < LINE_THICKNESS*512);
+\end{lstlisting}
+
+%=====================================================
+\section{edge\_stream\_path.v}
+%=====================================================
+
+\subsection{Mô Tả}
+Module pipeline xử lý ảnh streaming, tích hợp tất cả các stage từ input đến output.
+
+\subsection{Pipeline Stages}
+\begin{enumerate}
+    \item \textbf{sync2}: Đồng bộ input
+    \item \textbf{rgb2gray}: RGB $\rightarrow$ Grayscale
+    \item \textbf{sp\_preproc}: Tiền xử lý salt-pepper
+    \item \textbf{median3x3}: Lọc median
+    \item \textbf{window3x3}: Tạo cửa sổ $3\times3$
+    \item \textbf{sobel/scharr/canny}: Phát hiện cạnh
+    \item \textbf{hough\_stream}: Hough transform
+\end{enumerate}
+
+\subsection{Cấu Hình Mode}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{SW[3:2]} & \textbf{Mode} & \textbf{Output} \\
+\hline
+00 & RGB & Ảnh gốc \\
+01 & Grayscale & Ảnh xám \\
+10 & Sobel & Edge Sobel \\
+11 & Binary & Binary edge (cho Hough) \\
+\hline
+\end{tabular}
+\end{table}
+
+%=====================================================
+\section{median3x3\_stream.v}
+%=====================================================
+
+\subsection{Mô Tả}
+Bộ lọc median $3\times3$ streaming để khử nhiễu salt-and-pepper.
+
+\subsection{Nguyên Lý}
+Với mỗi pixel, lấy 9 pixel trong cửa sổ $3\times3$, sắp xếp và lấy giá trị median (vị trí thứ 5).
+
+\subsection{Độ Phức Tạp}
+\begin{itemize}
+    \item Line buffer: $2 \times 160 = 320$ bytes
+    \item Sorting network: 19 comparators
+    \item Latency: 3 cycles
+\end{itemize}
+
+%=====================================================
+\section{sobel\_3x3\_gray.v}
+%=====================================================
+
+\subsection{Kernel}
+\begin{equation}
+G_x = \begin{bmatrix} -1 & 0 & +1 \\ -2 & 0 & +2 \\ -1 & 0 & +1 \end{bmatrix}, \quad
+G_y = \begin{bmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ +1 & +2 & +1 \end{bmatrix}
+\end{equation}
+
+\subsection{Gradient Magnitude}
+\begin{equation}
+G = |G_x| + |G_y|
+\end{equation}
+(Xấp xỉ để tránh căn bậc 2)
+
+%=====================================================
+\section{rgb2gray8.v}
+%=====================================================
+
+\subsection{Công Thức}
+\begin{equation}
+Y = \frac{77R + 150G + 29B}{256}
+\end{equation}
+
+\subsection{Implementation}
+\begin{lstlisting}
+wire [15:0] sum = 77 * r + 150 * g + 29 * b;
+assign gray = sum[15:8];  // divide by 256
+\end{lstlisting}
+
+%=====================================================
+\section{vga\_adapter.v}
+%=====================================================
+
+\subsection{Mô Tả}
+Interface VGA với dual-port RAM cho frame buffer.
+
+\subsection{Timing (160x120 upscaled)}
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|}
+\hline
+Pixel Clock & 25 MHz \\
+H Active & 640 \\
+H Front Porch & 16 \\
+H Sync & 96 \\
+H Back Porch & 48 \\
+V Active & 480 \\
+V Front Porch & 10 \\
+V Sync & 2 \\
+V Back Porch & 33 \\
+\hline
+\end{tabular}
+\end{table}
+
+%=====================================================
+\section{Bảng Tổng Hợp Tài Nguyên}
+%=====================================================
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Module} & \textbf{LUTs} & \textbf{Registers} & \textbf{RAM bits} \\
+\hline
+hough\_stream\_path & ~500 & ~400 & 16,384 \\
+median3x3\_stream & ~200 & ~150 & 2,560 \\
+sobel\_3x3\_gray & ~100 & ~50 & 0 \\
+edge\_stream\_path & ~1000 & ~800 & 20,000 \\
+vga\_adapter & ~200 & ~100 & 460,800 \\
+\hline
+\textbf{Total (est.)} & ~2000 & ~1500 & ~500KB \\
+\hline
+\end{tabular}
+\caption{Ước tính tài nguyên FPGA}
+\end{table}
+
+\end{document}

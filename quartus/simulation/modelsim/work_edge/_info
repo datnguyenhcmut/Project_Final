@@ -1,0 +1,199 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/simulation/modelsim
+vcanny_simple
+Z1 !s110 1772342679
+!i10b 1
+!s100 S=;z;EZJkk1FS7UT6JUV]1
+IEj8hUP8OZOnc]O4SNm@hg3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1772181249
+Z4 8../../../src/image_processing/threshold_binary.v
+Z5 F../../../src/image_processing/threshold_binary.v
+L0 183
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1772342679.000000
+Z8 !s107 tb_edge_golden.v|../../../src/image_processing/threshold_binary.v|../../../src/image_processing/scharr_3x3_gray.v|../../../src/image_processing/sobel_3x3_gray.v|
+Z9 !s90 -work|work_edge|../../../src/image_processing/sobel_3x3_gray.v|../../../src/image_processing/scharr_3x3_gray.v|../../../src/image_processing/threshold_binary.v|tb_edge_golden.v|
+!i113 1
+Z10 o-work work_edge
+Z11 tCvgOpt 0
+vcanny_threshold
+R1
+!i10b 1
+!s100 ]hFg8mblDDLSSNALK64;N1
+IONhZ9VP>Hia?o6CA4Rz]@1
+R2
+R0
+R3
+R4
+R5
+L0 38
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vedge_hysteresis_3x3
+R1
+!i10b 1
+!s100 QL2B?oKdO_D:Y[SMEj4Wh0
+Ik=1RR<<4EZ@8RA>gFgBIS0
+R2
+R0
+R3
+R4
+R5
+L0 156
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vgrad_direction
+R1
+!i10b 1
+!s100 A^01a04AeW<<Q0Y7?CEK[0
+Ii_;SWf^RYeREmgEV?EzK_2
+R2
+R0
+R3
+R4
+R5
+L0 121
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vnms_3x3
+R1
+!i10b 1
+!s100 j4=[NMCzUef7Tag]GTom43
+I1;[KBiAgdFMVGJC?=MG4b2
+R2
+R0
+R3
+R4
+R5
+L0 74
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vscharr_3x3_gray
+R1
+!i10b 1
+!s100 kf<>ASPlh4178:1aLC0`;2
+I;?klJKhKfLEVVAm>1gXDO3
+R2
+R0
+Z12 w1772171314
+8../../../src/image_processing/scharr_3x3_gray.v
+F../../../src/image_processing/scharr_3x3_gray.v
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vsobel_3x3_gray
+R1
+!i10b 1
+!s100 OM2ekMjW<O2_A3aM3NHzz3
+ILldJfc8Kl=W8Q8XV=lPXf2
+R2
+R0
+R12
+8../../../src/image_processing/sobel_3x3_gray.v
+F../../../src/image_processing/sobel_3x3_gray.v
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vtb_edge_golden
+!s110 1772342705
+!i10b 1
+!s100 NVb>@i^0[iR6feIC2_G?m2
+IdD7=1B>>GPMPi^5d<7<eh2
+R2
+R0
+w1772342698
+8tb_edge_golden.v
+Ftb_edge_golden.v
+L0 6
+R6
+r1
+!s85 0
+31
+!s108 1772342705.000000
+!s107 tb_edge_golden.v|
+!s90 -work|work_edge|tb_edge_golden.v|
+!i113 1
+R10
+R11
+vthreshold_binary
+R1
+!i10b 1
+!s100 63Aom^>o4WFHXakG8_Bd41
+IbdUk>WX;U1liVkC<3C;6G1
+R2
+R0
+R3
+R4
+R5
+L0 12
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

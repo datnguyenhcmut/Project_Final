@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/simulation/modelsim
+vhough_stream_path
+Z1 !s110 1772428764
+!i10b 1
+!s100 A@7fi[E=KCaec;AMMYezc3
+IVA<LoKN?2dIO<DFhoa1nN3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1772428725
+Z4 8d:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/src/image_processing/hough_stream_path.v
+Z5 Fd:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/src/image_processing/hough_stream_path.v
+L0 13
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1772428764.000000
+Z8 !s107 tb_hough_stream.v|d:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/src/image_processing/hough_stream_path.v|
+Z9 !s90 -work|work_hough|d:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/src/image_processing/hough_stream_path.v|tb_hough_stream.v|
+!i113 1
+Z10 o-work work_hough
+Z11 tCvgOpt 0
+vsimple_lane_overlay
+R1
+!i10b 1
+!s100 Y[>Ri`UT`P6Od]YWL^1NO2
+I9S?MD`W:AcaV9VCgUWiXD1
+R2
+R0
+R3
+R4
+R5
+L0 369
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+vtb_hough_stream
+R1
+!i10b 1
+!s100 ZcJF8cOI`4Y_QFVToLLF41
+IkP9QO3iVX2<;^A80XL3he0
+R2
+R0
+w1772428752
+8tb_hough_stream.v
+Ftb_hough_stream.v
+L0 6
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11

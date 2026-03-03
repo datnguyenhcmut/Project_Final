@@ -4,7 +4,10 @@ module image_processing_uni #(
   parameter integer SOBEL_SHIFT   = 2,
   parameter integer SCHARR_SHIFT  = 3,
   parameter integer EDGE_BOOST_SH = 1,  
-  parameter integer GAIN_SH       = 2   
+  parameter integer GAIN_SH       = 2,
+  // Canny thresholds - easy to tune!
+  parameter [7:0]   CANNY_HIGH_TH = 8'd80,   // Strong edge threshold
+  parameter [7:0]   CANNY_LOW_TH  = 8'd30    // Weak edge threshold
 )(
   input  wire [23:0] colour_i0, colour_i1, colour_i2,
   input  wire [23:0] colour_i3, colour_i4, colour_i5,
@@ -64,11 +67,37 @@ module image_processing_uni #(
   wire [7:0 ] scharr_enh = (|g_sum[10:8]) ? 8'hFF : g_sum[7:0];
   wire [7:0] gray_y = med9;
 
+  //=========================================================================
+  // Canny-Style Edge Detection (Easy to Tune!)
+  //=========================================================================
+  // Using Sobel gradient with Canny hysteresis thresholding
+  
+  wire [7:0] canny_edge;
+  wire       canny_edge_bit;
+  
+  canny_simple #(
+    .HIGH_TH (CANNY_HIGH_TH),    // Adjust for more/less edges
+    .LOW_TH  (CANNY_LOW_TH)      // Adjust for edge sensitivity
+  ) u_canny (
+    .grad_mag (sobel_boost),
+    .edge_out (canny_edge),
+    .edge_bit (canny_edge_bit)
+  );
+
+  //=========================================================================
+  // Output Mode Selection
+  //=========================================================================
+  // mode 00: Original RGB
+  // mode 01: Grayscale (after median)
+  // mode 10: Sobel gradient (8-bit grayscale)
+  // mode 11: Binary edge (Canny-style) → for Lane Detection/Hough
+  
   always @(*) begin
     case (mode)
-      2'b00:   colour_out = colour_i4;                                 
-      2'b01:   colour_out = {gray_y, gray_y, gray_y};                  
-      2'b10:   colour_out = {sobel_boost, sobel_boost, sobel_boost};   
+      2'b00:   colour_out = colour_i4;                                 // RGB Original
+      2'b01:   colour_out = {gray_y, gray_y, gray_y};                  // Grayscale
+      2'b10:   colour_out = {sobel_boost, sobel_boost, sobel_boost};   // Sobel gradient
+      2'b11:   colour_out = {canny_edge, canny_edge, canny_edge};      // Binary edge (Canny)
       default: colour_out = {scharr_enh, scharr_enh, scharr_enh};      
     endcase
   end
