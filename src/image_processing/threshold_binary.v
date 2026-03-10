@@ -133,7 +133,6 @@ module grad_direction (
   // Others → diagonal
   
   wire [13:0] gy_x2 = {abs_gy, 1'b0};           // |Gy| * 2
-  wire [14:0] gy_x5 = {1'b0, abs_gy, 1'b0} + {2'b00, abs_gy};  // |Gy| * 2.5 ≈ |Gy| * 2 + |Gy|/2
   
   wire near_horizontal = (abs_gy < abs_gx) && (gy_x2 < {1'b0, abs_gx});  // |Gy|/|Gx| < 0.5
   wire near_vertical   = (abs_gx < abs_gy) && ({abs_gx, 1'b0} < {1'b0, abs_gy});  // |Gx|/|Gy| < 0.5

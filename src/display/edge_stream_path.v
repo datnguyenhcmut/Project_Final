@@ -21,7 +21,8 @@ module edge_stream_path #(
   output wire [7:0]  x_s,          
   output wire [6:0]  y_s,
   output wire [23:0] colour_s,     
-  output wire        plot_s        
+  output wire        plot_s,
+  output wire        edge_out      // NEW: direct edge detection output for Hough
 );
 
   reg [7:0] xs;
@@ -44,17 +45,20 @@ module edge_stream_path #(
   wire [2:0] sel_im_sync;
   wire [1:0] mode_sync;
 
-  sync2 #(.W(3)) u_sync_im (.clk(clock), .d(sel_im), .q(sel_im_sync));
-  sync2 #(.W(2)) u_sync_md (.clk(clock), .d(mode),   .q(mode_sync));
+  sync2 #(.W(3)) u_sync_im (.clk(clock), .resetn(resetn), .d(sel_im), .q(sel_im_sync));
+  sync2 #(.W(2)) u_sync_md (.clk(clock), .resetn(resetn), .d(mode),   .q(mode_sync));
 
   reg  [2:0] sel_im_r;
   reg  [1:0] mode_r;
 
+  // Update mode every frame start for reliability
+  wire frame_start = (xs == 8'd0) && (ys == 7'd0);
+  
   always @(posedge clock or negedge resetn) begin
     if (!resetn) begin
       sel_im_r <= 3'd0;
       mode_r   <= 2'b00;
-    end else if ((xs == 8'd0) && (ys == 7'd0)) begin
+    end else if (frame_start) begin
       sel_im_r <= sel_im_sync;
       mode_r   <= mode_sync;
     end
@@ -178,15 +182,17 @@ module edge_stream_path #(
   );
 
   // Canny-style binary edge detection
-  wire canny_edge;
+  wire [7:0] canny_edge_8;
+  wire       canny_edge_bit;
   canny_simple #(
     .HIGH_TH(CANNY_HIGH_TH),
     .LOW_TH (CANNY_LOW_TH)
   ) u_canny (
     .grad_mag (grad_sobel),
-    .edge_out (canny_edge)
+    .edge_out (canny_edge_8),
+    .edge_bit (canny_edge_bit)
   );
-  wire [7:0] binary_out = canny_edge ? 8'hFF : 8'h00;
+  wire [7:0] binary_out = canny_edge_8;
 
   wire [9:0]  tmp_boost = {2'b00, grad_sobel} << EDGE_BOOST_SH;
   wire [7:0]  sobel_boost_sat = (|tmp_boost[9:8]) ? 8'hFF : tmp_boost[7:0];
@@ -206,14 +212,28 @@ module edge_stream_path #(
     end
   end
 
+  // Output selection based on mode
+  // Debug: Add colored borders to verify mode is changing
+  // Top-left 8x8 corner shows: mode 00=Black, 01=Red, 10=Green, 11=Blue
+  wire in_debug_corner = (x_win < 8'd8) && (y_win < 7'd8);
+  
+  wire [23:0] debug_color = (mode_r == 2'b00) ? 24'h000000 :  // Black = RGB mode
+                            (mode_r == 2'b01) ? 24'hFF0000 :  // Red = Grayscale mode  
+                            (mode_r == 2'b10) ? 24'h00FF00 :  // Green = Sobel mode
+                                                24'h0000FF;   // Blue = Canny mode
+  
   reg [23:0] colour_sel;
   always @(*) begin
-    case (mode_r)
-      2'b00: colour_sel = rgb_win;                                            // RGB original
-      2'b01: colour_sel = {m_pixel, m_pixel, m_pixel};                        // Grayscale (median)
-      2'b10: colour_sel = {sobel_boost_sat, sobel_boost_sat, sobel_boost_sat}; // Sobel edge
-      2'b11: colour_sel = {binary_out, binary_out, binary_out};               // Binary Canny edge
-    endcase
+    if (in_debug_corner) begin
+      colour_sel = debug_color;  // Show mode indicator in corner
+    end else begin
+      case (mode_r)
+        2'b00: colour_sel = rgb_win;                                            // RGB original
+        2'b01: colour_sel = {m_pixel, m_pixel, m_pixel};                        // Grayscale (median)
+        2'b10: colour_sel = {sobel_boost_sat, sobel_boost_sat, sobel_boost_sat};// Sobel edge
+        2'b11: colour_sel = {binary_out, binary_out, binary_out};               // Binary Canny edge
+      endcase
+    end
   end
 
   assign x_s      = x_win;
@@ -221,5 +241,9 @@ module edge_stream_path #(
   assign colour_s = colour_sel;
   assign plot_s   = w_valid;
   assign sel_im_req = sel_im_r;
+  
+  // Direct edge output for Hough (always uses sobel, regardless of display mode)
+  // This ensures Hough gets edges even when display shows RGB
+  assign edge_out = (sobel_boost_sat > 8'd30);  // Sobel threshold for edge detection
   
 endmodule

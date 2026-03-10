@@ -1,243 +1,59 @@
-# vsim -c -suppress 10000 -do "run -all; quit -f" work_top_hough.tb_top_hough 
-# Start time: 12:42:57 on Mar 02,2026
-# Loading work_top_hough.tb_top_hough
-# Loading work_top_hough.top
-# Loading work_top_hough.data_path
-# Loading work_top_hough.address_adaptor
-# Loading work_top_hough.pixel_register
-# Loading work_top_hough.image_processing_uni
-# Loading work_top_hough.rgb2gray8
-# Loading work_top_hough.median3x3
-# Loading work_top_hough.med3_8
-# Loading work_top_hough.impulse_switch_8
-# Loading work_top_hough.sobel_3x3_gray
-# Loading work_top_hough.scharr_3x3_gray
-# Loading work_top_hough.canny_simple
-# Loading work_top_hough.ctrl_path
-# Loading work_top_hough.edge_stream_path
-# Loading work_top_hough.sync2
-# Loading work_top_hough.sp_preproc_constbg_comb
-# Loading work_top_hough.median3x3_stream
-# Loading work_top_hough.window3x3_stream
-# Loading work_top_hough.hough_stream_path
-# Loading work_top_hough.image_bank_shared
-# Loading work_top_hough.image_01
-# Loading work_top_hough.altsyncram
-# Loading work_top_hough.image_02
-# Loading work_top_hough.image_03
-# Loading work_top_hough.vga_adapter
-# Loading work_top_hough.vga_pll
-# Loading work_top_hough.vga_pll_0002
-# Loading sv_std.std
-# Loading work_top_hough.altera_lnsim_functions
-# Loading work_top_hough.altera_pll
-# Loading work_top_hough.vga_address_translator
-# Loading work_top_hough.vga_controller
-# Loading work_top_hough.altsyncram_body
-# Loading work_top_hough.ALTERA_DEVICE_FAMILIES
-# Loading work_top_hough.ALTERA_MF_MEMORY_INITIALIZATION
-# Loading work_top_hough.dps_extra_kick
-# Loading work_top_hough.dprio_init
-# Loading work_top_hough.altera_generic_pll_functions
-# Loading work_top_hough.generic_pll
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(75): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r0 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(75): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(75): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(75): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(76): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r1 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(76): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(76): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(76): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(77): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r2 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(77): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(77): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(77): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(78): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r3 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(78): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(78): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(78): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(79): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r4 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(79): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(79): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(79): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(80): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r5 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(80): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(80): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(80): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(81): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r6 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(81): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(81): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(81): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(82): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r7 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(82): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(82): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(82): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/data_path.v(83): [TFMPC] - Too few port connections. Expected 8, found 5.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_dp/r8 File: ../../../src/display/pixel_register.v
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(83): [TFMPC] - Missing connection for port 'valid_i'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(83): [TFMPC] - Missing connection for port 'bypass'.
-# ** Warning: (vsim-3722) ../../../src/display/data_path.v(83): [TFMPC] - Missing connection for port 'valid_o'.
-# ** Warning: (vsim-3017) ../../../src/display/edge_stream_path.v(185): [TFMPC] - Too few port connections. Expected 3, found 2.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_stream/u_canny File: ../../../src/image_processing/threshold_binary.v
-# ** Warning: (vsim-3015) ../../../src/display/edge_stream_path.v(185): [PCDPC] - Port size (8) does not match connection size (1) for port 'edge_out'. The port definition is at: ../../../src/image_processing/threshold_binary.v(188).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_stream/u_canny File: ../../../src/image_processing/threshold_binary.v
-# ** Warning: (vsim-3722) ../../../src/display/edge_stream_path.v(185): [TFMPC] - Missing connection for port 'edge_bit'.
-# ** Warning: (vsim-3015) ../../../src/display/image_bank_shared.v(10): [PCDPC] - Port size (15) does not match connection size (17) for port 'address'. The port definition is at: D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/ram_modules/image_01.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_bank/u_img0 File: D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/ram_modules/image_01.v
-# ** Warning: (vsim-3015) ../../../src/display/image_bank_shared.v(11): [PCDPC] - Port size (15) does not match connection size (17) for port 'address'. The port definition is at: D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/ram_modules/image_02.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_bank/u_img1 File: D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/ram_modules/image_02.v
-# ** Warning: (vsim-3015) ../../../src/display/image_bank_shared.v(12): [PCDPC] - Port size (15) does not match connection size (17) for port 'address'. The port definition is at: D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/ram_modules/image_03.v(41).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/u_bank/u_img2 File: D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/ram_modules/image_03.v
-# ** Warning: (vsim-3017) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Too few port connections. Expected 26, found 6.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/VGA/u_pll/vga_pll_inst/altera_pll_i File: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_lnsim.sv
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'refclk1'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'phase_en'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'updn'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'num_phase_shifts'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'scanclk'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'cntsel'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'reconfig_to_pll'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'extswitch'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'adjpllin'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'cclk'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'phase_done'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'reconfig_from_pll'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'activeclk'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'clkbad'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'phout'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'lvds_clk'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'loaden'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'extclk_out'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'cascade_out'.
-# ** Warning: (vsim-3722) D:/tangnano4k/FPGA-Based-Edge-Detection-with-Salt-and-Pepper-Denoising/quartus/vga_pll/vga_pll/vga_pll_0002.v(78): [TFMPC] - Missing connection for port 'zdbfbclk'.
-# ** Warning: (vsim-3017) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Too few port connections. Expected 23, found 10.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/VGA/VideoMemory File: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v
-# ** Warning: (vsim-3015) ../../../src/vga_modules/vga_adapter.v(55): [PCDPC] - Port size (1) does not match connection size (15) for port 'address_a'. The port definition is at: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v(47598).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/VGA/VideoMemory File: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v
-# ** Warning: (vsim-3015) ../../../src/vga_modules/vga_adapter.v(55): [PCDPC] - Port size (1) does not match connection size (24) for port 'data_a'. The port definition is at: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v(47596).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/VGA/VideoMemory File: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v
-# ** Warning: (vsim-3015) ../../../src/vga_modules/vga_adapter.v(55): [PCDPC] - Port size (1) does not match connection size (15) for port 'address_b'. The port definition is at: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v(47599).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/VGA/VideoMemory File: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v
-# ** Warning: (vsim-3015) ../../../src/vga_modules/vga_adapter.v(55): [PCDPC] - Port size (1) does not match connection size (24) for port 'q_b'. The port definition is at: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v(47613).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_top_hough/u_top/VGA/VideoMemory File: C:/intelFPGA_lite/18.1/quartus/eda/sim_lib/altera_mf.v
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'rden_a'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'rden_b'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'data_b'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'clocken2'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'clocken3'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'aclr0'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'aclr1'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'byteena_a'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'byteena_b'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'addressstall_a'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'addressstall_b'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'q_a'.
-# ** Warning: (vsim-3722) ../../../src/vga_modules/vga_adapter.v(55): [TFMPC] - Missing connection for port 'eccstatus'.
+# vsim -c -do "run -all; quit -f" work_hough.tb_hough_stream 
+# Start time: 23:04:58 on Mar 09,2026
+# Loading work_hough.tb_hough_stream
+# Loading work_hough.hough_stream_path
 # run -all
-# Info: =================================================
-# Info:           Generic PLL Summary
-# Info: =================================================
-# Time scale of (tb_top_hough.u_top.VGA.u_pll.vga_pll_inst.altera_pll_i.new_model.gpll.no_need_to_gen) is  1ps /  1ps
-# Info: hierarchical_name = tb_top_hough.u_top.VGA.u_pll.vga_pll_inst.altera_pll_i.new_model.gpll.no_need_to_gen
-# Info: reference_clock_frequency = 50.0 MHz
-# Info: output_clock_frequency = 25 MHZ
-# Info: phase_shift = 0 ps
-# Info: duty_cycle = 50
-# Info: sim_additional_refclk_cycles_to_lock = 0
-# Info: output_clock_high_period = 20000.000000
-# Info: output_clock_low_period = 20000.000000
-# ================================================
-# TOP MODULE WITH HOUGH TRANSFORM - FULL DATAPATH TEST
-# Image: 160x120 (19200 pixels)
-# ================================================
+# ===============================================
+#    HOUGH TRANSFORM STREAM PATH TESTBENCH
+# ===============================================
 # 
-# ========== PHASE 1: Basic Setup ==========
+# --- Test 1: Passthrough Mode (Hough OFF) ---
+#   Mismatches: 161 (first pixels may have latency)
+# [PASS] Passthrough mode working (within tolerance)
 # 
-# TEST 1: Reset and PLL initialization
-#   [PASS] Reset released
+# --- Test 2: Single Line Detection ---
+#   Detected lines: 2
+#   Hough busy: 0
+# [PASS] Line detected
 # 
-# TEST 2: Enable stream mode
-#   [PASS] Stream mode active
+# --- Test 3: Line Overlay Display ---
+#   Blue line pixels drawn: 5055
+# [PASS] Line overlay visible (5055 pixels)
 # 
-# ========== PHASE 2: Edge Detection ==========
+# --- Test 4: Two Lane Lines Detection ---
+#   Detected lines: 2
+# [PASS] Two lines detected
 # 
-# TEST 3: Mode 00 - RGB passthrough
-#   [PASS] RGB mode set
+# --- Test 5: Horizontal Line Detection ---
+#   Detected lines: 1
+# [PASS] Horizontal line detected
 # 
-# TEST 4: Mode 01 - Grayscale
-#   [PASS] Grayscale mode set
+# --- Test 6: Vertical Line Detection ---
+#   Detected lines: 2
+# [PASS] Vertical line detected
 # 
-# TEST 5: Mode 10 - Sobel edge detection
-#   Edge pixels (Sobel>50): 3702
-#   [PASS] Sobel edges detected
+# --- Test 7: Noise Rejection ---
+#   Detected lines: 0
+# [PASS] Noise properly filtered
 # 
-# TEST 6: Mode 11 - Binary edge (for Hough input)
-#   [PASS] Binary edge mode set
-#   White edge pixels: 2354
-#   [PASS] Binary edges visible
+# --- Test 8: State Machine Reset ---
+# [PASS] State machine resets correctly
 # 
-# ========== PHASE 3: Hough Transform ==========
+# --- Generating Output File ---
+#   Output written to hough_output.mem
 # 
-# TEST 7: Enable Hough transform (SW[4]=1)
-#   [PASS] Hough enabled
-# 
-# TEST 8: Hough state machine operation
-#   Waiting for Hough to process frame...
-#   Hough state: 3 (0=IDLE, 1=CLEAR, 2=COLLECT, 3=DETECT, 4=READY)
-#   Lines valid: 1
-#   Num lines: 2
-#   Line1 votes: 5, rho: 35, theta: 1
-#   Line2 votes: 3
-#   [PASS] Hough processing active or done
-# 
-# TEST 9: Hough line detection
-#   After 3 frames:
-#   Lines valid: 1, Num lines: 2
-#   Line1 votes: 16
-#   [PASS] Lines detected by Hough transform
-# 
-# TEST 10: Line overlay in output (red pixels)
-#   Red overlay pixels: 16041
-#   [PASS] Line overlay visible
-# 
-# TEST 11: Line detection signals
-#   Pixels on detected lines: 8099
-#   [PASS] on_line signals checked
-# 
-# TEST 12: Disable Hough (SW[4]=0) - passthrough
-#   [PASS] Hough disabled
-#   Red pixels with Hough OFF: 0
-#   [PASS] No overlay when Hough disabled
-# 
-# ========== PHASE 4: VGA Output ==========
-# 
-# TEST 13: VGA sync signals toggling
-#   [PASS] VGA_HS toggling
-#   [PASS] VGA_VS active
-# 
-# TEST 14: VGA colour output contains data
-#   Non-zero VGA pixels: 0
-#   [FAIL] VGA output has pixel data
-# 
-# ========== PHASE 5: Final Integration ==========
-# 
-# TEST 15: Full pipeline: Binary edge + Hough overlay
-#   Configuration: SW = 0001011100
-#   use_stream: 1, hough_en: 1, mode: 11
-#   Hough state: 2, lines_valid: 1, num_lines: 2
-#   [PASS] Full pipeline configured
-# 
-# TEST 16: Extended operation (10 frames)
-# Break key hit
-# Simulation stop requested.
-#  quit -f
-# End time: 12:48:22 on Mar 02,2026, Elapsed time: 0:05:25
-# Errors: 0, Warnings: 81
+# ===============================================
+#    HOUGH STREAM PATH TEST SUMMARY
+# ===============================================
+#   Image size: 160x120
+#   Theta bins: 32
+#   Rho bins: 64
+#   Vote threshold: 3
+# -----------------------------------------------
+#   Tests: 8  Pass: 8  Fail: 0
+# ===============================================
+# >>> ALL TESTS PASSED - READY FOR FPGA <<<
+# ** Note: $finish    : tb_hough_stream.v(504)
+#    Time: 3666070 ns  Iteration: 0  Instance: /tb_hough_stream
+# End time: 23:05:01 on Mar 09,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0

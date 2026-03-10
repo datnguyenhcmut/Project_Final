@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set MODELSIM_PATH=C:\intelFPGA\18.1\modelsim_ase\win32aloem
+set MODELSIM_PATH=C:\intelFPGA_lite\18.1\modelsim_ase\win32aloem
 set PATH=%MODELSIM_PATH%;%PATH%
 
 set SRC=..\..\..\src

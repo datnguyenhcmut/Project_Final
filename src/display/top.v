@@ -10,7 +10,8 @@ module top (
   output       VGA_SYNC_N,
   output [7:0] VGA_R,
   output [7:0] VGA_G,
-  output [7:0] VGA_B
+  output [7:0] VGA_B,
+  output [9:0] LEDR             // Debug LEDs
 );
 
   wire resetn = KEY[0];
@@ -99,6 +100,7 @@ module top (
   wire [16:0] addr_st;
   wire [2:0]  sel_im_st;
   wire [23:0] pixel_st;
+  wire        edge_stream;  // NEW: direct edge detection output
 
   edge_stream_path #(
     .W             (160),
@@ -106,7 +108,9 @@ module top (
     .SOBEL_SHIFT   (2),
     .SCHARR_SHIFT  (3),
     .EDGE_BOOST_SH (1),
-    .GAIN_SH       (2)
+    .GAIN_SH       (2),
+    .CANNY_HIGH_TH (8'd30),   // Lowered for better edge detection
+    .CANNY_LOW_TH  (8'd10)    // Lowered for sensitivity
   ) u_stream (
     .clock      (CLOCK_50),
     .resetn     (resetn),
@@ -119,14 +123,16 @@ module top (
     .x_s        (x_stream),
     .y_s        (y_stream),
     .colour_s   (colour_stream),
-    .plot_s     (plot_stream)
+    .plot_s     (plot_stream),
+    .edge_out   (edge_stream)   // NEW: direct edge detection output
   );
 
   //=========================================================================
   // Hough Transform for Lane Detection (controlled by SW[4])
   //=========================================================================
-  wire edge_is_white = (colour_stream[23:16] > 8'd128);  // Bright pixel = edge
   wire [23:0] hough_colour;
+  wire [2:0]  hough_lines;
+  wire        hough_busy;
   
   hough_stream_path #(
     .W           (160),
@@ -140,15 +146,15 @@ module top (
     .resetn        (resetn),
     .edge_x        (x_stream),
     .edge_y        (y_stream),
-    .edge_valid    (edge_is_white),
+    .edge_valid    (edge_stream),  // FIXED: use direct edge signal, not colour!
     .pixel_valid   (plot_stream),
     .pixel_in      (colour_stream),
     .enable_hough  (hough_en),
     .show_lines    (hough_en),
     .pixel_out     (hough_colour),
     .pixel_out_valid(),
-    .detected_lines(),
-    .hough_busy    ()
+    .detected_lines(hough_lines),
+    .hough_busy    (hough_busy)
   );
   
   // Final stream output: with or without Hough overlay
@@ -191,6 +197,45 @@ module top (
   assign VGA_SYNC_N = 1'b0;
   assign pixel_dp = pixel_bank;
   assign pixel_st = pixel_bank;
+  
+  //=========================================================================
+  // Debug LED Indicators
+  //=========================================================================
+  // LEDR[0]   = hough_en (SW[4])
+  // LEDR[1]   = use_stream (SW[6])
+  // LEDR[2]   = hough_busy
+  // LEDR[4:3] = hough_lines (0, 1, or 2 lines detected)
+  // LEDR[5]   = edge_stream blinking (edge detected)
+  // LEDR[7:6] = img_mode
+  // LEDR[9:8] = unused
+  
+  reg [19:0] edge_blink_cnt;
+  reg        edge_detected_led;
+  
+  always @(posedge CLOCK_50 or negedge resetn) begin
+    if (!resetn) begin
+      edge_blink_cnt <= 0;
+      edge_detected_led <= 0;
+    end else begin
+      if (edge_stream && plot_stream) begin
+        edge_blink_cnt <= edge_blink_cnt + 1;
+        if (edge_blink_cnt[19])  // Toggle at ~50Hz  
+          edge_detected_led <= 1;
+      end else if (edge_blink_cnt > 0) begin
+        edge_blink_cnt <= edge_blink_cnt - 1;
+        if (!edge_blink_cnt[19])
+          edge_detected_led <= 0;
+      end
+    end
+  end
+  
+  assign LEDR[0] = hough_en;
+  assign LEDR[1] = use_stream;
+  assign LEDR[2] = hough_busy;
+  assign LEDR[4:3] = hough_lines[1:0];
+  assign LEDR[5] = edge_detected_led;
+  assign LEDR[7:6] = img_mode;
+  assign LEDR[9:8] = 2'b00;
   
   defparam VGA.RESOLUTION              = "160x120";
   defparam VGA.MONOCHROME              = "FALSE";

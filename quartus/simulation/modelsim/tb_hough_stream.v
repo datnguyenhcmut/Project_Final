@@ -154,7 +154,7 @@ module tb_hough_stream;
   endtask
   
   //------------------------------------------------------------
-  // Count red line pixels in output
+  // Count blue line pixels in output (module uses BLUE for overlay)
   //------------------------------------------------------------
   function integer count_line_pixels;
     input dummy;
@@ -162,10 +162,10 @@ module tb_hough_stream;
     begin
       cnt = 0;
       for (addr = 0; addr < PIXELS; addr = addr + 1) begin
-        // Check for red pixel (LINE_COLOR = 24'hFF0000)
-        if (output_frame[addr][23:16] == 8'hFF && 
+        // Check for blue pixel (LINE_COLOR_BLUE = 24'h0000FF)
+        if (output_frame[addr][23:16] == 8'h00 && 
             output_frame[addr][15:8] == 8'h00 &&
-            output_frame[addr][7:0] == 8'h00)
+            output_frame[addr][7:0] == 8'hFF)
           cnt = cnt + 1;
       end
       count_line_pixels = cnt;
@@ -290,9 +290,9 @@ module tb_hough_stream;
     stream_frame();
     repeat(100) @(posedge clk);
     
-    // Count red pixels (detected line overlay)
+    // Count blue pixels (detected line overlay)
     line_pixels_drawn = count_line_pixels(0);
-    $display("  Red line pixels drawn: %0d", line_pixels_drawn);
+    $display("  Blue line pixels drawn: %0d", line_pixels_drawn);
     
     if (line_pixels_drawn > 10) begin
       pass_n = pass_n + 1;
